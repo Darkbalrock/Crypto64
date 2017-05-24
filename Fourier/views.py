@@ -1,6 +1,5 @@
 from django.shortcuts import render, HttpResponse
-import base64, os 
-from .form import imagen
+import base64, os  
 from django.shortcuts import render_to_response
 
 def index(request):
