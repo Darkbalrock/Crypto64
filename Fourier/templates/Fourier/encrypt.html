@@ -1,5 +1,16 @@
 {% extends 'Fourier/base.html' %}
 {% block content %}
+<script>
+	$( document ).ready(function() {
+		mostrar();
+		HideD();
+
+		$("#btnGetFile").click(function() {
+			debugger;
+		  $( "#getFile" ).submit();
+		}); 
+	}); 
+</script>
 		<div class="container">
 			<div class="content">
 			<!-- botones  primarios -->
@@ -9,17 +20,24 @@
 					<span style="font-family: 'Poppins', sans-serif; font-size: 185%;">Desencriptar</span>
 				</div> 
 		  		<!-- las dos cajas contenedoras -->
-				<div class="box code" id="codeT" class="codeT">
-					<form id="encryptFile" method="post" action="/encrypt" enctype="multipart/form-data">
-					{% csrf_token %}{{ form.as_p }}
-						<input type="file" name="file-5" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
-						<label for="file-5"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> 
-						<span>Seleciona imagen para encriptar</span></label>
-						<input type="text" id="text" name="text" value="fercho.jpg" style="display:none;"/>
-						<div> 
-							<button class="convertir ver" id="encrypt" type="submit">Encriptar</button>
-						</div>	
-					</form>
+				<div class="box code" id="codeT" class="codeT"> 
+					<div> 
+						<button class="convertir ver" onclick=" window.history.back();" id="encrypt" >Encriptar Otro Archivo</button>
+					</div>
+
+					<div id='oculto' style=" display: none;">
+						<form>
+	        				<textarea placeholder="Este es tu codigo..." id="copy" style="font-size:0.6em!important">{{base64}}</textarea>
+	        			</form>
+						<!--button onclick="copiarAlPortapapeles('copy')" class="convertir copiar">Copiar codigo</button-->
+
+						<button id="btnGetFile" class="convertir copiar" type="submit">Obtener base64</button>
+
+						<form action ="/getFile" id="getFile" name="getFile" method="get">
+							<input type="text" name="file" id="file" value="{{file}}" style="display:none;"/>
+						</form>
+
+					</div>
 				</div>
 			<div class="box decode" id="decodeT"  class="decodeT">
 				<div class="boxinterna">					
