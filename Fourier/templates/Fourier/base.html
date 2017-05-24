@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="{% static 'js/custom-file-input.js' %}"></script>
+		<!--link rel="shortcut icon" href="favicon.ico"-->
+		<!--link rel="stylesheet" type="text/css" href="css/CSSHide.css" /-->
+		<!--script src="js/custom-file-input.js"></script-->
+		<!--link href="css/imag.css" rel="stylesheet" type="text/css"-->
+		<link rel="stylesheet" href="{% static 'css/CSSHide.css' %}">
+		<link rel="stylesheet" href="{% static 'js/custom-file-input.js' %}">
+		<link rel="stylesheet" href="{% static 'js/jquery-v1.min.js' %}">
+		<link rel="stylesheet" href="{% static 'js/jquery.custom-file-input.js' %}">
+		<link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Poppins|Raleway|Source+Code+Pro" rel="stylesheet">
+  		<title>Hide64</title> 
+	</head>
+	<script type="text/javascript">
+	(function(e,t,n){
+		var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);
+	</script>
+
+	<!-- funcion mostrar los box-->
+	<script type="text/javascript">
+		function HideC(){
+			//debugger;
+			$("#codeT").slideUp(500);
+			$("#decodeT").slideDown(500);
+		}
+
+		function HideD(){
+			//debugger;
+			$("#codeT").slideDown(500);
+			$("#decodeT").slideUp(500);
+		}
+
+		$( document ).ready(function() {
+			$("#codeT").css('display','none');
+			$("#decodeT").css('display','none');
+		});
+	</script>
+
+	<!-- funcion mostrar textarea-->
+	<script type="text/javascript">
+		function mostrar(){
+		document.getElementById('oculto').style.display = 'block';}
+	</script>
+
+	<!-- funcion copiar en portapapeles-->
+
+	<script type="text/javascript">
+		function copiarAlPortapapeles(id_elemento) {
+	  	var aux = document.createElement("input");
+	  	aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
+	 	 document.body.appendChild(aux);
+	 	 aux.select();
+	 	 document.execCommand("copy");
+	 	 document.body.removeChild(aux);}
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    setTimeout(function() {
+		        $("#loading").slideUp(900)
+		    },6500);
+		});
+	</script>
+
+<body>
+	<div id='loading'>
+		<img src='https://68.media.tumblr.com/3b2be241f2b7e636bee77ea78469a5d6/tumblr_odr4f9f2yQ1u7o3wio1_1280.gif' style='ALGIN:center; margin:0 auto; position: absolute; top: 5%; left: 35%; margin: -30px 0 0 -30px;'></div>
+
+	<div class="hide64">
+		<img src="https://s-media-cache-ak0.pinimg.com/originals/1b/fc/d1/1bfcd1d131765fbe788b02d21348156c.png">
+	</div>
+	<div class="seccion">
+		{% block content %}
+		{% endblock %}
+	</div>
+     </body>
+</html>
