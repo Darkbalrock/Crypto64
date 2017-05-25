@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from . import views
-
+'''Controlador de urls '''
 urlpatterns = [
         url(r'^$', views.index),
         url(r'^encrypt+$', views.load_image, name='encryp'),
