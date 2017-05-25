@@ -1,0 +1,40 @@
+{% extends 'Fourier/base.html' %}
+{% block content %}
+<script>
+	$( document ).ready(function() {
+		mostrar();
+		HideC();
+
+		$("#btnGetFile").click(function() {
+			debugger;
+		  $( "#getFile" ).submit();
+		}); 
+	}); 
+</script>
+		<div class="container">
+			<div class="content">
+			<!-- botones  primarios -->
+				<div id="botones">
+					<button class="button button--itzel button--text-thick" class="button" id="d" class = "d" onclick="HideC()" style="vertical-align:middle"><i class="button__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"/></svg></i>	
+					<span style="font-family: 'Poppins', sans-serif; font-size: 185%;">Desencriptar</span>
+				</div> 
+		  		<!-- las dos cajas contenedoras -->
+			<div class="box decode" id="decodeT"  class="decodeT">
+				<div class="boxinterna">					
+					<div class="dosbox">  
+						<button class="convertir ver" onclick=" window.history.back();" id="encrypt" >Desencriptar Otro Archivo</button>		
+					</div>
+						<form action ="/getImg" id="getFile" name="getFile" method="get">
+							<input type="text" name="file" id="file" value="{{file}}" style="display:none;"/>
+						</form> 
+					<div id='oculto' style=" display: none;">
+						<form>
+	        				<img></img>
+	        			</form>
+	        		</div>	        		
+					<button id="btnGetFile" class="convertir copiar" type="submit">Obtener imagen</button>
+				</div>
+			</div>
+		</div>
+	</div> <!-- --> 
+{% endblock content %}

@@ -11,8 +11,7 @@ def load_image(request):
         encrypt(request.FILES['file-5'], str(request.FILES['file-5']))
         fileBase64 = open('uploads/'+str(request.FILES['file-5'])+'_base64.txt','rb')
         namefile = str(request.FILES['file-5'])+'_base64.txt'
-        base64 = fileBase64.read()
-        SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+        base64 = fileBase64.read() 
         return render_to_response('Fourier/encrypt.html', {'base64':base64, 'file':namefile,})
     return render(request, 'Fourier/index.html', {})
  
@@ -37,5 +36,31 @@ def get_file(request):
     fileBase64 = open('uploads/'+namefile,'rb') 
     base64 = fileBase64.read()
     response = HttpResponse(base64, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=' + namefile
+    return response 
+
+def load_txt(request):
+    if request.method == 'POST':
+        handle_uploaded_file(request.FILES['file-4'], str(request.FILES['file-4']))
+        decrypt(request.FILES['file-4'], str(request.FILES['file-4']))
+        fileImg= open('uploads/'+str(request.FILES['file-4'])+'_decode64.jpg','rb')
+        namefile = str(request.FILES['file-4'])+'_decode64.jpg'
+        img = fileImg.read() 
+        return render_to_response('Fourier/decrypt.html', {'img':img, 'file':namefile,}) 
+    return render(request, 'Fourier/index.html', {})     
+
+def decrypt(file, filename):
+    with open('uploads/'+filename,'rb') as file_base64:
+        text_encode = file_base64.read()
+    image_64_decode = base64.b64decode(text_encode)     
+    image_result = open('uploads/'+filename+'_decode64.jpg','wb')
+    image_result.write(image_64_decode)
+    return
+
+def get_Img(request):
+    namefile = request.GET['file']
+    fileBase64 = open('uploads/'+namefile,'rb') 
+    base64 = fileBase64.read()
+    response = HttpResponse(base64, content_type='image/gif')
     response['Content-Disposition'] = 'attachment; filename=' + namefile
     return response 
